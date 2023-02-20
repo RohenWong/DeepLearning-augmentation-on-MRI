@@ -14,4 +14,4 @@ There are three notebooks, written and run on Google Collab:
 
 Download the [patient NIFTI files](https://cloudstor.aarnet.edu.au/plus/s/dgiQZ2ftvWLnUq2), which have been provided by Robert Finnegan. What is not crucial, but might be of interest, is Robert's [code for converting the images into NIFTI](https://cloudstor.aarnet.edu.au/plus/s/1XvjIt81kN8UjBd). 
 
-I then uploaded the NIFTI files onto my Google Drive - and each time I ran any Colab notebook, I [mounted Google Drive](https://stackoverflow.com/a/47019779) so that it had access to files in Google Drive. 
+I then uploaded the NIFTI files onto my Google Drive - and each time I ran any Colab notebook, I [mounted Google Drive](https://stackoverflow.com/a/47019779) so that it had access to these NIFTI files. 
