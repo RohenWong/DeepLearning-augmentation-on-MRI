@@ -1,5 +1,5 @@
 # VAE_on_ISPY2
-This project uses Variational Autoencoders (VAEs) to perform data augmentation on breast cancer MRI from the ISPY-2 clinical trial. We develop a novel augmentation architecture based on VAEs, to generate **both T2-weighted MRI and their corresponding tumour masks**. We train a U-Net segmentation model, and compare DICE scores on the test set (augmented batches vs. unaltered batches), to evaluate if the augmentation proved useful for improving tumour segmentation. 
+This project uses Variational Autoencoders (VAEs) to perform data augmentation on breast cancer MRI from the ISPY-2 clinical trial. We develop a novel augmentation architecture based on VAEs, to generate **both T2-weighted MRI and their corresponding tumour masks**. We train a U-Net segmentation model to evaluate if the augmentation proved useful for improving tumour segmentation. 
 
 ## Notebooks 
 
@@ -10,8 +10,22 @@ There are three notebooks, written and run on Google Collab:
 3. `ISPY_UNet.ipynb` builds the U-Net architecture and trains the U-Net segmentation model on the original images. This notebook also contains the architecture for our novel VAE augmentation, which generates both T2-weighted MRI and their corresponding tumour masks. Batches are augmented, and test set DICE is compared against test set DICE from the unaugmented data.  
 
 
-## Loading the data
+## Loading data
 
-Download the [patient NIFTI files](https://cloudstor.aarnet.edu.au/plus/s/dgiQZ2ftvWLnUq2), which have been provided by Robert Finnegan. What is not crucial, but might be of interest, is Robert's [code for converting the images into NIFTI](https://cloudstor.aarnet.edu.au/plus/s/1XvjIt81kN8UjBd). 
+### Running the notebooks
+I have saved two types of intermediate files: 
+
+<b>Processed output from patient NIFTI </b>
+
+- `t1np_stan.pkl`, `t2np_stan.pkl`, `mask_cropped.pkl` `patient_labels.pkl` 
+
+<b>Further processed output that is to be passed to Pytorch DataLoaders </b> (these work on the previous output)
+
+- `t1_arraysstan_32.pkl`, `t2_arraysstan_32.pkl`, `mask_arrayscropped_8.pkl`
+
+In each notebook, I have included code chunks that use `gdown` to download the necessary datasets from my Google Drive. 
+
+### Rerunning the processing
+If you would like to rerun the processing, this is provided in `ISPY_processing.ipynb`. You will need to download the [patient NIFTI files](https://cloudstor.aarnet.edu.au/plus/s/dgiQZ2ftvWLnUq2), which have been provided by Robert Finnegan. What is not crucial, but might be of interest, is Robert's [prior code for converting the images into NIFTI](https://cloudstor.aarnet.edu.au/plus/s/1XvjIt81kN8UjBd). 
 
 I then uploaded the NIFTI files onto my Google Drive - and each time I ran any Colab notebook, I [mounted Google Drive](https://stackoverflow.com/a/47019779) so that it had access to these NIFTI files. 
