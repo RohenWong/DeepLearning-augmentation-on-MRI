@@ -3,7 +3,7 @@ This project uses Variational Autoencoders (VAEs) to perform data augmentation o
 
 ## Notebooks 
 
-There are three notebooks, written and run on Google Collab: 
+There are four notebooks, written and run (in order) on Google Collab: 
 
 1. `ISPY_processing.ipynb` processes the NIFTI files. Resampling to same resolution, cropping/padding to size 512 x 512, then uniformly cropping out background. Mean/std normalisation is then performed on each image. The end result are numpy arrays representing 2D slices of the images. 
 2. `ISPY_VAE_working.ipynb` loads the numpy arrays into pytorch `DataLoaders`, and specifies the architecture for our developed VAEs. VAEs are trained for the T1, T2-weighted MRI, as well as for the tumour masks (binary images). Training results and augmentations are visualised. 
