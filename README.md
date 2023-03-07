@@ -12,11 +12,22 @@ There are four notebooks, written and run (in order) on Google Collab:
 The 3D MRI scans are processed as follows: resample to the same resolution, take 2D axial slices, filter to slices of interest (those surrounding and including tumours). Then, crop and pad images to the same size. After that, (uniformly) crop out background. Lastly, perform mean/std normalisation on each image. The end result are numpy arrays (size 320x512) representing 2D slices of the images, which are then passed to Pytorch DataLoaders (and reshaped to size 128x128)
 ![alt text](https://github.com/RohenWong/VAE_on_ISPY2/blob/main/readme_pictures/processing.png?raw=true)
 
-<br />
-
 2. `ISPY_VAE.ipynb` specifies the architecture for the VAEs (**Fig 2**). VAEs are trained for the T1, T2-weighted MRI, as well as for the tumour masks (binary images). Training results and augmentations are visualised. 
 
-3. `ISPY_VAE_multimodal.ipynb` develops our architecture for a VAE that works on both the T2-weighted MRI and tumour masks (the VAE works with multiple image modalities, hence the name). **This VAE generates both T2-weighted MRI, and also the corresponding tumour mask for a given augmented T2 image. This overcomes the problem of augmented data not having the corresponding tumour pixel labels.**
+\
+**Fig 2: Simplified architecture of a VAE**
+The 'image' here is a Pytorch Tensor of size (1, 128, 128). The images are grayscale, reflected in the channel size of 1. 
+![alt text](https://github.com/RohenWong/VAE_on_ISPY2/blob/main/readme_pictures/VAE.png?raw=true)
+
+3. `ISPY_VAE_multimodal.ipynb` contains our novel architecture for a VAE that works on both the T2-weighted MRI and tumour masks (multiple image modalities, hence the name). **This VAE generates a T2-weighted MRI, and its corresponding tumour mask. This overcomes the problem of augmented data not having the corresponding tumour pixel labels.**
+
+\
+**Fig 3: Simplified architecture of our multimodal VAE**
+We are now working with Tensors of size (2, 128, 128). The first channel holds the (grayscale) T2, and the second holds the (grayscale) tumour mask. Encoder architecture is identical to **Fig 2**, however we now have **two decoders**, one for the T2, one for the Mask. 
+![alt text](https://github.com/RohenWong/VAE_on_ISPY2/blob/main/readme_pictures/VAE_mm.png?raw=true)
+
+
+
 4. `ISPY_UNet.ipynb` builds a U-Net architecture and trains the U-Net segmentation model on the original images. This is compared against a U-Net trained using our multimodal VAE augmentation. 
 
 
