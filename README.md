@@ -7,10 +7,12 @@ There are four notebooks, written and run (in order) on Google Collab:
 
 1. `ISPY_processing.ipynb` processes the 3D NIFTI images. The processing is summarised in **Fig 1**. The end result are NumPy arrays representing 2D axial slices of the images. These arrays are then loaded into Pytorch DataLoaders. 
 
+\
 **Fig 1: Overview of processing**
 The 3D MRI scans are processed as follows: resample to the same resolution, take 2D axial slices, filter to slices of interest (those surrounding and including tumours). Then, crop and pad images to the same size. After that, (uniformly) crop out background. Lastly, perform mean/std normalisation on each image. The end result are numpy arrays (size 320x512) representing 2D slices of the images, which are then passed to Pytorch DataLoaders (and reshaped to size 128x128)
 ![alt text](https://github.com/RohenWong/VAE_on_ISPY2/blob/main/readme_pictures/processing.png?raw=true)
 
+<br />
 
 2. `ISPY_VAE.ipynb` specifies the architecture for the VAEs (**Fig 2**). VAEs are trained for the T1, T2-weighted MRI, as well as for the tumour masks (binary images). Training results and augmentations are visualised. 
 
