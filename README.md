@@ -6,6 +6,10 @@ This project uses Variational Autoencoders (VAEs) to perform data augmentation o
 There are four notebooks, written and run (in order) on Google Collab: 
 
 1. `ISPY_processing.ipynb` processes the NIFTI files. Resampling to same resolution, cropping/padding to size 512 x 512, then uniformly cropping out background. Mean/std normalisation is then performed on each image. The end result are numpy arrays representing 2D slices of the images. 
+
+![alt text](https://github.com/RohenWong/VAE_on_ISPY2/blob/main/readme_pictures/processing.png?raw=true)
+
+
 2. `ISPY_VAE.ipynb` loads the numpy arrays into pytorch DataLoaders, and specifies the architecture for the VAEs. VAEs are trained for the T1, T2-weighted MRI, as well as for the tumour masks (binary images). Training results and augmentations are visualised. 
 3. `ISPY_VAE_multimodal.ipynb` develops our architecture for a VAE that works on both the T2-weighted MRI and tumour masks (the VAE works with multiple image modalities, hence the name). **This VAE generates both T2-weighted MRI, and also the corresponding tumour mask for a given augmented T2 image. This overcomes the problem of augmented data not having the corresponding tumour pixel labels.**
 4. `ISPY_UNet.ipynb` builds a U-Net architecture and trains the U-Net segmentation model on the original images. This is compared against a U-Net trained using our multimodal VAE augmentation. 
