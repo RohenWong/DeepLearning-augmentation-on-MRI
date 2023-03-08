@@ -3,7 +3,7 @@ This project uses Variational Autoencoders (VAEs) to perform data augmentation o
 
 ## Notebooks 
 
-There are four notebooks, written and run (in order) on Google Collab: 
+There are four notebooks, written (in order) on Google Collab (Python 3.8.10): 
 
 1. `ISPY_processing.ipynb` processes the 3D NIFTI images. The processing is summarised in **Fig 1**. The end result are NumPy arrays representing 2D axial slices of the images. These arrays are then loaded into Pytorch DataLoaders. 
 
